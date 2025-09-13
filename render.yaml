@@ -8,10 +8,19 @@ services:
       - key: DB_HOST
         fromDatabase:
           name: frappe-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: frappe-db
+          property: port
       - key: DB_NAME
-        value: frappe
+        fromDatabase:
+          name: frappe-db
+          property: database
       - key: DB_USER
-        value: frappe
+        fromDatabase:
+          name: frappe-db
+          property: user
       - key: DB_PASSWORD
         fromDatabase:
           name: frappe-db
@@ -20,12 +29,15 @@ services:
         fromService:
           name: frappe-redis
           type: redis
+          property: connectionString
     autoDeploy: true
 
   - type: redis
     name: frappe-redis
     plan: free
+    ipAllowList: []   # Allow all internal access
 
 databases:
   - name: frappe-db
     plan: free
+    ipAllowList: []   # Allow all internal access

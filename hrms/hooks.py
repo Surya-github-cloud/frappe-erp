@@ -24,14 +24,24 @@ add_to_apps_screen = [
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/hrms/css/hrms.css"
+
+# app_include_js = [
+# 	"hrms.bundle.js",
+# ]
+# app_include_css = "hrms.bundle.css"
+
 app_include_js = [
 	"hrms.bundle.js",
+    "/assets/hrms/js/custom_desk.js"  # <-- ADD THIS LINE
 ]
-app_include_css = "hrms.bundle.css"
-
+app_include_css = [
+	"hrms.bundle.css",
+    "/assets/hrms/css/custom_desk.css" # <-- ADD THIS LINE
+]
 # website
 
 # include js, css files in header of web template
+web_include_css = "/assets/hrms/css/custom_login.css" # <-- ADD THIS LINE
 # web_include_css = "/assets/hrms/css/hrms.css"
 # web_include_js = "/assets/hrms/js/hrms.js"
 

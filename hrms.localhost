@@ -4,10 +4,10 @@ FROM frappe/bench:latest
 WORKDIR /home/frappe/frappe-bench
 
 # Copy your apps into the container
-COPY . /home/frappe/frappe-bench/apps/your_app_name
+COPY . /home/frappe/frappe-bench/apps/hrms.localhost
 
 # Install your app
-RUN bench get-app your_app_name /home/frappe/frappe-bench/apps/your_app_name
+RUN bench get-app your_app_name /home/frappe/frappe-bench/apps/hrms.localhost
 
 # Build assets and set up production
 RUN bench build && \

@@ -6,22 +6,26 @@ services:
     dockerfilePath: ./Dockerfile
     envVars:
       - key: DB_HOST
-        value: postgres
+        fromDatabase:
+          name: frappe-db
       - key: DB_NAME
         value: frappe
       - key: DB_USER
         value: frappe
       - key: DB_PASSWORD
-        generateValue: true
+        fromDatabase:
+          name: frappe-db
+          property: password
       - key: REDIS_URL
         fromService:
-          type: redis
           name: frappe-redis
+          type: redis
     autoDeploy: true
+
+  - type: redis
+    name: frappe-redis
+    plan: free
 
 databases:
   - name: frappe-db
-    ipAllowList: []
-
-redis:
-  - name: frappe-redis
+    plan: free

@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: frappe-erp
+    env: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DB_HOST
+        value: postgres
+      - key: DB_NAME
+        value: frappe
+      - key: DB_USER
+        value: frappe
+      - key: DB_PASSWORD
+        generateValue: true
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: frappe-redis
+    autoDeploy: true
+
+databases:
+  - name: frappe-db
+    ipAllowList: []
+
+redis:
+  - name: frappe-redis

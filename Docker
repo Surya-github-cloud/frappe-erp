@@ -1,0 +1,21 @@
+FROM frappe/bench:latest
+
+# Set working directory
+WORKDIR /home/frappe/frappe-bench
+
+# Copy your apps into the container
+COPY . /home/frappe/frappe-bench/apps/your_app_name
+
+# Install your app
+RUN bench get-app your_app_name /home/frappe/frappe-bench/apps/your_app_name
+
+# Build assets and set up production
+RUN bench build && \
+    bench setup production --yes && \
+    bench setup socketio
+
+# Expose ports
+EXPOSE 8000
+
+# Run frappe
+CMD ["bench", "start"]
